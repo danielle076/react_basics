@@ -1,4 +1,4 @@
-##State
+## State
 
 React werkt de UI bij op basis van de toestand van de toepassing. Deze toestand wordt eigenlijk opgeslagen als een eigenschap van een functiecomponent:
 
