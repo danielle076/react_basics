@@ -40,7 +40,6 @@ Wanneer dit klaar is, kun je de applicatie starten met behulp van:
 of gebruik de WebStorm knop (npm start). Open http://localhost:3000 om de pagina in de browser te bekijken.
 Begin met het maken van wijzigingen in `src/App.js`: elke keer als je een bestand opslaat, zullen de wijzigingen te zien zijn op de webpagina.
 
-##Codesandbox.io
+## Codesandbox.io
 
 Wanneer je React niet via een lokale machine wilt uitvoeren kun je dit online doen via https://codesandbox.io/. Dit is een webtool waar je React in kan schrijven en oefenen.
-
