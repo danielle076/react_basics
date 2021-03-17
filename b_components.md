@@ -73,7 +73,7 @@ index.js
       document.getElementById("root")
     );
 
-We mken ook een custom component voor de lijst.
+We maken ook een custom component voor de lijst.
 
 index.js
 
