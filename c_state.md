@@ -1,11 +1,32 @@
 ## State
 
-React werkt de UI bij op basis van de toestand van de toepassing. Deze toestand wordt eigenlijk opgeslagen als een eigenschap van een functiecomponent:
+React components heeft een ingebouwd state object. Het state object is waar je de waarden van eigenschappen die bij de component horen opslaat. Wanneer het state object verandert, wordt de component opnieuw gerenderd.
 
-    // visualisatie van de state
-    state = {
-        value: 0
+Het ingebouwde state object van React heet `.useState();` en kun je als volgt gebruiken.
+
+    function App() {
+        React.useState();
     }
+
+Om niet elke keer `.useState` uit te typen kun je hem importeren.
+
+    import React, {useState} from 'react'
+
+Wanneer we state maken, bijvoorbeeld we willen een counter bijhouden die `counter` heet en hierin wordt de waarde opgeslagen en de functie noemen we `setCounter`. Je mag hem ook `toggleCounter` noemen. Aan `useState` geven we de initiale waarde mee. De counter staat hier op "0".
+
+    function App() {
+        const [counter, setCounter] = useState(0);
+    }
+
+Wanneer je de counter wilt gaan gebruiken kun je deze in een `<div>` zetten.
+
+    return (
+        <div>
+            {counter}
+        </div>
+    );
+
+De `setCounter` kunnen we overal aanroepen, bijvoorbeeld met een button klik.
 
 Stel we hebben een teller en 3 knoppen die verhogen, verlagen of resetten. De waarde van de teller wordt weergegeven op de pagina via JSX.
 
@@ -47,6 +68,6 @@ Hier is een voorbeeld van zo'n teller:
 
     export default App;
 
-We hebben de state bijgewerkt door setState aan te roepen in elk van de functies die een klik op een knop afhandelen. De teller die op de pagina wordt weergegeven, wordt in real time bijgewerkt. Zo krijgt React zijn naam omdat het reageert op state veranderingen.
+We hebben de `state` bijgewerkt door `setState` aan te roepen in elk van de functies die een klik op een knop afhandelen. De teller die op de pagina wordt weergegeven, wordt in real time bijgewerkt. Zo krijgt React zijn naam omdat het reageert op state veranderingen.
 
 Kortom, React controleert automatisch elke componentstatus op wijzigingen en werkt het DOM op de juiste manier bij.
