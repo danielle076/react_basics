@@ -5,3 +5,4 @@ Dit project bevat de volgende bestanden:
 * `b_components.md`
 * `c_state.md`
 * `d_classvsfunctie.md`
+* `e_renderen.md`
