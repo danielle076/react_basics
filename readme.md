@@ -6,3 +6,4 @@ Dit project bevat de volgende bestanden:
 * `c_state.md`
 * `d_classvsfunctie.md`
 * `e_renderen.md`
+* `f_eventhandlers.md`
