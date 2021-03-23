@@ -7,3 +7,4 @@ Dit project bevat de volgende bestanden:
 * `d_classvsfunctie.md`
 * `e_renderen.md`
 * `f_eventhandlers.md`
+* `g_functiesproperties.md`
