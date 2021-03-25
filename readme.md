@@ -9,3 +9,4 @@ Dit project bevat de volgende bestanden:
 * `f_eventhandlers.md`
 * `g_functiesproperties.md`
 * `h_controlledcomponents.md`
+* `i_reacthookform.md`
