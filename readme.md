@@ -8,3 +8,4 @@ Dit project bevat de volgende bestanden:
 * `e_renderen.md`
 * `f_eventhandlers.md`
 * `g_functiesproperties.md`
+* `h_controlledcomponents.md`
