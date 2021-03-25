@@ -59,6 +59,7 @@ We geven het formulier een input met naam en woonplaats. De volgende acties geef
 - placeholder
 - id: deze is uniek
 
+Dat ziet er als volgt uit.
 
     return (
         <>
@@ -90,6 +91,7 @@ Het type weer wat we gaan bestellen zetten we in radio buttons.
 - value
 - id: deze is uniek
 
+Dat komt er als volgt uit te zien.
 
     return (
         <>
