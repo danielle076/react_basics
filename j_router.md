@@ -219,3 +219,131 @@ Link toevoegen doe je met `<Link>`.
             <Link to="/">Ga terug naar de homepagina</Link>
         </section>
     </Route>
+
+### Components
+Om het geheel overzichtelijk te maken maak je een map components aan en maak je van de drie sections een component. Bijvoorbeeld voor component Food.
+
+    function Food() {
+        return (
+            <section>
+                <h1>Dit is een food pagina</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eligendi nihil nostrum
+                    omnis quia recusandae tenetur? Ad alias, architecto dolor eius, iure maxime minima
+                    necessitatibus quae quia ratione saepe tenetur.</p>
+                <Link to="/">Ga terug naar de homepagina</Link>
+            </section>
+        );
+    }
+
+    export default Food;
+
+In de App.js gebruik je het component als volgt.
+
+    <Route exact path="/food">
+        <Food/>
+    </Route>
+
+### Dynamische parameters
+Dynamische parameters doe je met `useParams`. Bijvoorbeeld je hebt een blog en daar heb je een template-pagina van hoe een blogpost eruit moet komen te zien. Je hoeft niet voor elke blogpost een nieuwe pagina-component te maken. 
+
+`useParams` zorgt ervoor dat we de dynamische parameter uit de URL kunnen halen. De `useParams` zet je in de `<Route>` door een `/: + een naam`. Op basis van die naam haal je de gegevens eruit die je nodig heb. Zo maak je een dynamische URL.
+
+    <Route exact path="/food/:id">
+        <Food/>
+    </Route>
+
+Vervolgens gebruik je in Food.js de useParams `id`.
+
+    function Food() {
+    const {id} = useParams();
+    
+        return (
+            <section>
+                <h1>Dit is een food pagina met gerecht {id}</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eligendi nihil nostrum
+                    omnis quia recusandae tenetur? Ad alias, architecto dolor eius, iure maxime minima
+                    necessitatibus quae quia ratione saepe tenetur.</p>
+                <Link to="/">Ga terug naar de homepagina</Link>
+            </section>
+        );
+    }
+
+### Doorlinken
+Wanneer je iemand wilt doorlinken naar een andere pagina met niet een link op de pagina, maar met het klikken op een button doe je dit met `useHistory()`.
+Naast deze button wil je ook dat er andere dingen gebeuren zoals dat er iets in de console wordt gelogd.
+
+In de functie `handleClick` heb je geen toegang meer tot het link-component. Met gebruik van de `push` van `useHistory()` kun je pushen naar de link waar je naartoe wilt gaan.
+
+    function App() {
+    const history = useHistory();
+    
+        function handleClick() {
+            console.log("Je hebt mij geklikt");
+            // de gebruiker doorlinken naar de homepagina
+            history.push("/");
+        }
+    
+        return (
+            <Route path="/food-pizza">
+                <section>
+                    <h1>Dit is een food-pizza pagina</h1>
+                    <button onClick={handleClick} type="button"></button>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eligendi nihil nostrum
+                        omnis quia recusandae tenetur? Ad alias, architecto dolor eius, iure maxime minima
+                        necessitatibus quae quia ratione saepe tenetur.</p>
+                </section>
+            </Route>
+        );
+    }
+
+### Privateroute
+Privateroute gebruik je om content af te schermen van specifieke gebruikers. Bijvoorbeeld je moet admin rechten hebben om ergens bij te kunnen of je moet ingelogd zijn om content te kunnen bekijken.
+
+We doen met state alsof de gebruiker is ingelogd = true en niet ingelogd = false. <br/>
+Met conditioneel renderen bepalen we of iemand de pagina mag zien wanneer de state true is.
+
+    function App() {
+    const [isLoggedIn, toggleIsLoggedIn] = useState(false);
+    
+        return (
+            <>
+                <nav>
+                    <ul>
+                        {isLoggedIn === true &&
+                        <li>
+                            <NavLink to="/private-page" activeClassName="active-link">Private page</NavLink>
+                        </li>}
+                    </ul>
+                </nav>
+    
+                <Route path="/private-page">
+                    <section>
+                        <h1>Dit is een verborgen pagina</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eligendi nihil nostrum
+                            omnis quia recusandae tenetur? Ad alias, architecto dolor eius, iure maxime minima
+                            necessitatibus quae quia ratione saepe tenetur.</p>
+                    </section>
+                </Route>
+            </>
+        );
+    }
+
+Als je hem op `true` zet dan zie je de verborgen pagina bij de navigatie staan.
+
+    const [isLoggedIn, toggleIsLoggedIn] = useState(true);
+
+Wanneer je nu de state op false zet, dan kan de gebruiker nog bij de link waar hij net op zat. Dit is niet de bedoeling.
+
+In plaats van een normale `<Route>` moet je er een private route van maken door middel van het `<Redirect>` component: `<Redirect to="/"/>`.<br/>
+Als je ingelogd bent ? dan ga je naar de section en ben je niet ingelogd : dan ga je naar de homepagina.
+
+    <Route path="/private-page">
+        {isLoggedIn === true
+            ? <section>
+                <h1>Dit is een verborgen pagina</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eligendi nihil nostrum
+                    omnis quia recusandae tenetur? Ad alias, architecto dolor eius, iure maxime minima
+                    necessitatibus quae quia ratione saepe tenetur.</p>
+            </section>
+            : <Redirect to="/"/>}
+    </Route>
