@@ -10,3 +10,5 @@ Dit project bevat de volgende bestanden:
 * `g_functiesproperties.md`
 * `h_controlledcomponents.md`
 * `i_reacthookform.md`
+* `j_router.md`
+* `k_reactlifecycles.md`
