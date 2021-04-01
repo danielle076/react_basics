@@ -274,7 +274,7 @@ Vergeet de key property niet toe te voegen. Deze heeft een unieke naam.
         return (
             <ul>
                 {countries.map((country) => {
-                    return <li key={name}>{country.name}</li>
+                    return <li key="name">{country.name}</li>
                 })}
             </ul>
         );
@@ -308,7 +308,7 @@ Zorg ervoor dat je contoleert of je data wel binnen krijgt: als we countries heb
         return (
             <ul>
                 {countries && countries.map((country) => {
-                    return <li key={name}>{country.name}</li>
+                    return <li key="name">{country.name}</li>
                 })}
             </ul>
         );
@@ -355,7 +355,7 @@ Test de error: maak een spelfout in de URL.
             <ul>
                 {error && <p>{error}</p>}
                 {countries && countries.map((country) => {
-                    return <li key={name}>{country.name}</li>
+                    return <li key="name">{country.name}</li>
                 })}
             </ul>
         );
@@ -404,7 +404,7 @@ Deze melding krijgen alleen mensen te zien met langzame internet. Je kan dit tes
                 {error && <p>{error}</p>}
                 {loading && <p>Data wordt geladen...</p>}
                 {countries && countries.map((country) => {
-                    return <li key={name}>{country.name}</li>
+                    return <li key="name">{country.name}</li>
                 })}
             </ul>
         );
