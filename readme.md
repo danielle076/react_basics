@@ -14,3 +14,4 @@ Dit project bevat de volgende bestanden:
 * `k_reactlifecycles.md`
 * `l_api.md`
 * `m_error.md`
+* `n_loading.md`
