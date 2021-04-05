@@ -1,11 +1,11 @@
 ## Router
 
-Componenten vormen het hart van React's krachtige, declaratieve programmeermodel. React Router is een verzameling navigatiecomponenten die samen met je applicatie declaratief kunnen worden samengesteld. Of je nu bookmarkable URL's voor je webapp wilt hebben of een samenstelbare manier om te navigeren in React Native, React Router werkt overal waar React rendert.
+Componenten vormen het hart van React's krachtige, declaratieve programmeermodel. React Router is een verzameling navigatiecomponenten die samen met je applicatie declaratief kunnen worden samengesteld. Of je nu bookmarkable URL's voor je webapp wilt hebben of een samenstelbare manier om te navigeren in React Native, React Router werkt overal waar React rendert. Je kunt de documentatie van React Router hier vinden: [React Router](https://reactrouter.com/web/guides/quick-start)
 
 ### Installeren
 `npm install react-router-dom` <br/>
 of<br/>
-`npm install react-router-dom --save` (zorgt ervoor dat hij in package.json staat en voor iemand die hem dan binnenhaalt via bijvoorbeeld github staat hij er al in)
+`npm install react-router-dom --save` (je slaat de geïnstalleerde package op in de dependency sectie in het package. json bestand)
 
 ### Navigatie
 We beginnen met een simpele navigatie + inhoud pagina.
