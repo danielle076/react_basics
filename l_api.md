@@ -315,3 +315,27 @@ Zorg ervoor dat je contoleert of je data wel binnen krijgt: als we countries heb
     }
     
     export default App;
+
+#### Stap 12 - environment variables
+Wanneer je op verschillende plekken een `apiKey` declareert is dit inefficiënt maar ook onveilig. Je wilt namelijk nooit jouw eigen API key openbaar online hebben staan (op bijvoorbeeld GitHub of live op een webadres). Iedereen die de broncode inspecteert, zou dan namelijk jouw API key kunnen gebruiken. Dit probleem lossen we op met environment variables (omgevingsvariabelen).
+
+Environment variables zijn variabelen die we declareren in een `.env` bestand. Omdat we dit bestand nooit mee pushen naar GitHub (en dus altijd toevoegen aan de `.gitignore`) blijven onze tokens geheim.
+
+- Maak in dezelfde hoogte als de `.gitignore` en `package.json` een `.env` én een `.env.dist` file aan.
+- Voeg de `.env` toe aan de `.gitignore`.
+- Open de `.env.dist` en zet daar `REACT_APP_API_KEY=`. De waarde laten we hier leeg. Het is conventie om environment variables in hoofdletters te schrijven. Bovendien moeten de namen altijd met REACT_APP beginnen, omdat het framework van Create React App ze anders niet kan vinden.
+- Kopieer de naam van deze variabele en plak hemm in `.env`. Plak de waarde van de API key er direct achter.
+
+`REACT_APP_API_KEY=5d93er563voorbeelapikeyd85e6256cb39361faf2b9d7d84acc4eb`
+
+- Run het commando `npm build` in de terminal. Dit doe je omdat de browser geen boodschap aan al die React code heeft. Door middel van Webpack worden al onze losse JavaScript, HTML en CSS bestanden samengevoegd tot één grote statische bundel code. Dit noemen we de build. Environment variables zijn geen onderdeel van het project, maar worden pas uitgelezen tijdens de build. Als wij tijdens runtime (wanneer je aan het developen bent) environment variabelen wil uitlezen, gaat dit niet werken. <b>Iedere keer wanneer je iets aanpast in het .env bestand, zul je opnieuw moeten builden.</b>
+- We kunnen de variabele gebruiken. Open `App.js` en gebruik de apiKey door `process.env.REACT_APP_API_KEY` in te vullen.
+
+
+    try {
+     const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location},nl&appid=${process.env.REACT_APP_API_KEY}&lang=nl`);
+     setWeatherData(result.data);
+    } catch (e) {
+     console.error(e);
+     setError(true);
+    }
