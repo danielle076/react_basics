@@ -8,5 +8,11 @@ Als je een React applicatie bouwt, zul je regelmatig data doorgeven via properti
 
 `React Context` lost dit probleem voor ons op. Er wordt een overkoepelend stukje state aangemaakt waar ieder component in de applicatie bij zou kunnen. Als een component de informatie uit de context nodig heeft, kan het dit direct aanspreken (<i>consumer</i>), omdat een top-level component deze data in de context aanbied (<i>provider</i>).
 
+### Voorbeeld context
 
+Een context aanmaken voor een click-counter is alsof je een tosti doorsnijdt met een kettingzaag. Probeer je voor te stellen dat dit een ingewikkeldere applicatie zou zijn en dat we daarom Context gaan implementeren.
 
+Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben tot dezelfde data:
+1. Button component die de count verhoogt
+2. Button component die de count verlaagt
+3. Result component die de count laat zien
