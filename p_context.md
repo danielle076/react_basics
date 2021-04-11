@@ -106,3 +106,14 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
     }
     
     export default App;
+
+#### Stap 6 - Stappenplan context
+- Stap 7: Context maken en exporteren: `CounterContext`
+- Stap 8: Context importeren
+- Stap 9: Context Provider maken en omwikkelen om het hoogste element
+- Stap 10: Stukje data maken die via Provider in Context gaat
+- Stap 11: Context importeren
+- Stap 12: Componenten “abonneren” op de context met `useContext`
+- Stap 13: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
+- Stap 14: CounterContext.js state toevoegen in de provider en twee functies maken die de waarde in de state aanpassen
+- Stap 15: Buttons abonneren op de context functies door `useContext` te gebruiken
