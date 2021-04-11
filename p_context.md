@@ -116,7 +116,7 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
 - Stap 12: Componenten “abonneren” op de context met `useContext`
 - Stap 13: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
 - Stap 14: CounterContext.js state toevoegen in de provider en twee functies maken die de waarde in de state aanpassen
-- Stap 15: Buttons abonneren op de context functies door `useContext` te gebruiken
+- Stap 18: Buttons abonneren op de context functies door `useContext` te gebruiken
 
 #### Stap 7 - map context aanmaken + CounterContext.js
 Ook al heb je maar 1 context, zet hem altijd in de map context en niet in de map components, dit is verwarrend.
@@ -205,3 +205,240 @@ In `return` gaan we `count` gebruiken.
     }
     
     export default Result;
+
+#### Stap 13 - App.js state aanmaken
+We hebben vaak geen vaste data, maar data dat elke keer veranderd. Dit doen we met state: `const [count, setCount] = useState(0)`
+
+    import React, {useState} from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import {CounterContext} from './context/CounterContext';
+    import './App.css';
+    
+    function App() {
+    const [count, setCount] = useState(0)
+    const data = {
+    count: 0,
+    }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </CounterContext.Provider>
+        );
+    }
+    
+    export default App;
+
+#### Stap 14 - App.js logica state
+Als we de logica hier willen houden in App.js, dan zorgen we dat de waarde van `count` in het dataobject wordt gezet.
+
+De `setCount` functie willen we beschikbaar maken, deze zet je onder de property count. Nu kunnen we ons gaan abonneren op het setCount functie.
+
+Deze logica die we creëren wilt App.js niets mee te maken hebben. Deze logica willen we beheren in de provider.
+
+    import React, {useState} from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import {CounterContext} from './context/CounterContext';
+    import './App.css';
+    
+    function App() {
+    const [count, setCount] = useState(0)
+    const data = {
+    count: count,
+    setCount: setCount,
+    }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </CounterContext.Provider>
+        );
+    }
+    
+    export default App;
+
+#### Stap 15 - Aparte functie component voor de provider gemaakt, zodat de logica daar naartoe kan. De oude weggehaald uit App.js en omwikkelt in index.js
+<i> CounterContext.js</i>
+
+    import React, {createContext, useState} from 'react';
+    
+    export const CounterContext = createContext({});
+    
+    function CounterContextProvider() {
+    const [count, setCount] = useState(0)
+    
+        const data = {
+            count: count,
+            setCount: setCount,
+        }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </CounterContext.Provider>
+        );
+    }
+    
+    export default CounterContextProvider;
+
+<i> App.js </i>
+
+    import React from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import './App.css';
+    
+    function App() {
+        return (
+            <>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </>
+        );
+    }
+    
+    export default App;
+
+<i> index.js</i>
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App';
+    import CounterContextProvider from './context/CounterContext'
+    import reportWebVitals from './reportWebVitals';
+    
+    ReactDOM.render(
+        <React.StrictMode>
+            <CounterContextProvider>
+                <App/>
+            </CounterContextProvider>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+    
+    reportWebVitals();
+
+#### Stap 16 - CounterContext.js
+Door te zeggen dat `CounterContextProvider` een property `children` kan ontvangen, kunnen we zeggen dat we datzelfde `CounterContext` component ergens omheen willen wrappen. Waar we hem ook omheen zetten, dat moet bij de return `children` binnenkomen: dat zijn straks onze 3 elementen.
+
+`CounterContext.Provider` is het echt component en `CounterContextProvider` is het jasje dat we erom hebben gewikkeld
+
+In de CounterContextProvider doe je ook de error afhandeling en loading.
+
+    import React, {createContext, useState} from 'react';
+    
+    export const CounterContext = createContext({});
+    
+    function CounterContextProvider({children}) {
+        const [count, setCount] = useState(0)
+    
+        const data = {
+            count: count,
+            setCount: setCount,
+        }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                {children}
+            </CounterContext.Provider>
+        );
+    }
+
+    export default CounterContextProvider;
+
+#### Stap 17 - CounterContext.js twee functies gemaakt die de waarde in de state aanpassen
+
+De CounterContext provider houden we slim en alle andere componenten houden we dom door alle logica in de CounterContext te zetten.
+
+We maken twee functies voor decrementCount en incrementCount aan.
+
+We geven deze functies mee aan het dat object, zodat die buttons dat straks uit de context kunnen halen.
+
+De gegevens staan nu in het data object en dat geven we mee aan `CounterContext.Provider`. Alle children die daarin zitten hebben daar toegang toe. Op dit moment zijn alle children `<App/>` die in index.js staat. En in dit App component zitten Result, DecrementButton en IncrementButton.
+
+    import React, {createContext, useState} from 'react';
+    
+    export const CounterContext = createContext({});
+    
+    function CounterContextProvider({children}) {
+    const [count, setCount] = useState(0);
+    
+        function decrementCount() {
+            setCount(count - 1);
+        }
+    
+        function incrementCount() {
+            setCount(count + 1);
+        }
+    
+        const data = {
+            count: count,
+            decrementCountFunction: decrementCount,
+            incrementCountFunction: incrementCount,
+        }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                {children}
+            </CounterContext.Provider>
+        );
+    }
+    
+    export default CounterContextProvider;
+
+#### Stap 18 - Buttons geabonneerd op de context functies door useContext te gebruiken
+
+Importeren van CounterContext en useContext functie.
+
+Hetgeen dat we gaan destructuren uit de CounterContext is `decrementCountFunction` en `incrementCountFunction`.
+
+Je kan de functies `decrementCountFunction` en `incrementCountFunction` nu gebruiken alsof we hem als property hebben ontvangen
+
+Je zet een `onClick` op de buttons met de naam van de functie erin.
+
+<i> DecrementButton.js</i>
+
+    import React, {useContext} from 'react';
+    import {CounterContext} from '../context/CounterContext';
+    
+    function DecrementButton() {
+        const {decrementCountFunction} = useContext(CounterContext);
+    
+        return (
+            <button type="button" onClick={decrementCountFunction}>
+                Decrement
+            </button>
+        );
+    }
+    
+    export default DecrementButton;
+
+<i>IncrementButton.js</i>
+
+    import React, {useContext} from 'react';
+    import {CounterContext} from '../context/CounterContext';
+    
+    function IncrementButton() {
+        const {incrementCountFunction} = useContext(CounterContext);
+    
+        return (
+            <button type="button" onClick={incrementCountFunction}>
+                Increment
+            </button>
+        );
+    }
+    
+    export default IncrementButton;
