@@ -117,3 +117,38 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
 - Stap 13: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
 - Stap 14: CounterContext.js state toevoegen in de provider en twee functies maken die de waarde in de state aanpassen
 - Stap 15: Buttons abonneren op de context functies door `useContext` te gebruiken
+
+#### Stap 7 - map context aanmaken + CounterContext.js
+Ook al heb je maar 1 context, zet hem altijd in de map context en niet in de map components, dit is verwarrend.
+
+Het is netjes wanneer je altijd een leeg object `{}` aan de `createContext` meegeeft.
+
+    import {createContext} from 'react';
+    
+    export const CounterContext = createContext({});
+
+#### Stap 8 - App.js context importeren
+Normaliter wikkelen we context om het app component in index.js, maar omdat we ook nog wat data willen gaan maken, gaan we hem voor nu in de App.js zetten.
+
+    import {CounterContext} from './context/CounterContext';
+
+#### Stap 9 - App.js context provider + omwikkelen op het hoogste element (voor nu om App.js, later om index.js)
+
+    import React from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import {CounterContext} from './context/CounterContext';
+    import './App.css';
+    
+    function App() {
+    return (
+        <CounterContext.Provider>
+            <Result/>
+            <DecrementButton/>
+            <IncrementButton/>
+        </CounterContext.Provider>
+    );
+    }
+    
+    export default App;
