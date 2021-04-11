@@ -8,6 +8,19 @@ Als je een React applicatie bouwt, zul je regelmatig data doorgeven via properti
 
 `React Context` lost dit probleem voor ons op. Er wordt een overkoepelend stukje state aangemaakt waar ieder component in de applicatie bij zou kunnen. Als een component de informatie uit de context nodig heeft, kan het dit direct aanspreken (<i>consumer</i>), omdat een top-level component deze data in de context aanbied (<i>provider</i>).
 
+Dus context geeft ons een manier om data door de componenten-tree door te geven, zonder dat we properties moeten doorgeven op ieder niveau.
+
+Wanneer je context op de verkeerde manier implementeert zorg je voor veel onnodige re-renders van veel componenten.
+
+### Hoe pak je context?
+Je maakt een aparte "context" voor elk stukje data dat gebundeld kan worden.
+
+Daarmee bedoelen we, stel we hebben een dark en een light UI thema daar maak je dan een `ThemeContext` voor.
+
+Stel je hebt ook nog taal selectie in de applicatie, dan maak je daar een aparte `LanguageContext` voor.
+
+Waarom stop je niet alle context bijelkaar: dat komt omdat alle elementen die gebruik maken van de data uit de context opnieuw worden gerenderd op het moment dat een klein stukje data uit die context veranderd. Al die re-renders willen we voorkomen.
+
 ### Voorbeeld context
 
 Een context aanmaken voor een click-counter is alsof je een tosti doorsnijdt met een kettingzaag. Probeer je voor te stellen dat dit een ingewikkeldere applicatie zou zijn en dat we daarom Context gaan implementeren.
