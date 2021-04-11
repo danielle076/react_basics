@@ -442,3 +442,30 @@ Je zet een `onClick` op de buttons met de naam van de functie erin.
     }
     
     export default IncrementButton;
+
+### Uitleg property children 
+
+Een gewone button ziet er zo uit.
+
+    <button type="button">
+        Klik mij!
+    </button>
+
+Wanneer we een component van deze button maken, maar we willen nog steeds ons component op dezelfde manier om tekst (of andere elementen) heen kunnen plaatsen, gebruik je de children prop:
+
+    function ButtonComponent({children}) {
+        return (
+            <button type="button">
+                {children}
+            </button>
+        )
+    }
+
+Door die property kunnen we ons ButtonComponent nu op dezelfde manier om andere tekst heen wrappen.
+
+    <ButtonComponent>
+        Klik mij!
+    </ButtonComponent>
+    <ButtonComponent>
+        Mij ook!
+    </ButtonComponent>
