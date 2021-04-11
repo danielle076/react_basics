@@ -152,3 +152,56 @@ Normaliter wikkelen we context om het app component in index.js, maar omdat we o
     }
     
     export default App;
+
+#### Stap 10 - App.js data maken die via Provider in context gaat
+We maken een data object aan waarin count staat.
+
+Als we dat data object willen meegeven aan de provider dan doen we dit via de property `value`.
+
+    import React from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import {CounterContext} from './context/CounterContext';
+    import './App.css';
+    
+    function App() {
+    const data = {
+    count: 0,
+    }
+    
+        return (
+            <CounterContext.Provider value={data}>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </CounterContext.Provider>
+        );
+    }
+    
+    export default App;
+
+#### Stap 11 - Result.js context importeren
+
+    import {CounterContext} from '../context/CounterContext';
+
+#### Stap 12 - Result.js componenten “abonneren” op de context met useContext
+
+We gaan `CounterContext` gebruiken en daar hebben we `useContext` functie voor nodig.
+
+We maken een variabele const aan en we moeten iets destructuren uit dat data object. Wat willen we uit de CounterContext halen, wat hebben we in dat dat object gezet: `count`.
+
+In `return` gaan we `count` gebruiken.
+
+    import React, {useContext} from 'react';
+    import {CounterContext} from '../context/CounterContext';
+    
+    function Result() {
+    const {count} = useContext(CounterContext);
+    
+        return (
+            <h1>{count}</h1>
+        );
+    }
+    
+    export default Result;
