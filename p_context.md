@@ -29,3 +29,80 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
 1. Button component die de count verhoogt
 2. Button component die de count verlaagt
 3. Result component die de count laat zien
+
+#### Stap 1 - App.js
+
+    import React from 'react';
+    import './App.css';
+    
+    function App() {
+        return (
+            <div>
+                Hoi!
+            </div>
+        );
+    }
+    
+    export default App;
+
+#### Stap 2 - map components aanmaken + Result.js
+
+    import React from 'react';
+    
+    function Result() {
+         return (
+            <h1>
+                0
+            </h1>
+        );
+    }
+    
+    export default Result;
+
+#### Stap 3 - IncrementButton.js in map components
+    
+    import React from 'react';
+    
+    function IncrementButton() {
+        return (
+            <button type="button">
+                Increment
+            </button>
+        );
+    }
+    
+    export default IncrementButton;
+
+#### Stap 4 - DecrementButton.js in map components
+
+    import React from 'react';
+    
+    function DecrementButton() {
+        return (
+            <button type="button">
+                Decrement
+            </button>
+        );
+    }
+    
+    export default DecrementButton;
+
+#### Stap 5 - pagina's van map components implementeren in App.js
+
+    import React from 'react';
+    import Result from './components/Result';
+    import DecrementButton from './components/DecrementButton';
+    import IncrementButton from './components/IncrementButton';
+    import './App.css';
+    
+    function App() {
+        return (
+            <>
+                <Result/>
+                <DecrementButton/>
+                <IncrementButton/>
+            </>
+        );
+    }
+    
+    export default App;
