@@ -17,3 +17,4 @@ Dit project bevat de volgende bestanden:
 * `n_loading.md`
 * `o_exports.md`  
 * `p_context.md`
+* `q_helper.md`
