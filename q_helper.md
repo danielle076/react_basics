@@ -4,7 +4,7 @@ We noemen iets een helper functie als het een pure JavaScript functie is en wann
 
 Deze helper functies hebben bijvoorbeeld geen state nodig, daar zijn ze niet afhankelijk van. Je kunt dit dan extern neerzetten.
 
-Bijvoorbeeld in een weather app krijg je de weersverwachting terug. Deze kan in Farhenheit, maar ook in Celsius. Om deze berekening te maken kun je JavaScript gebruiken die alleen een berekening doet. Dus in de helper functie gooien we een hoeveelheid calvin en we verwachten een omgerekende eenheid terug. Deze functie heeft alleen JavaScript en verder niets.
+Een voorbeeld is een weather app die een weersverwachting terugkrijgt. Dit kan in Farhenheit of in Celsius. Om deze berekening te maken kun je JavaScript gebruiken die alleen een berekening doet. Dus in de helper functie gooien we een hoeveelheid Celsius en we verwachten een omgerekende eenheid terug. Deze functie heeft alleen JavaScript en verder niets.
 
 - Maak een map helpers aan in de src map
 - Maak in die map een bestandje genaamd kelvinToCelcius.js
@@ -16,6 +16,6 @@ Bijvoorbeeld in een weather app krijg je de weersverwachting terug. Deze kan in 
     
     export default kelvinToCelcius;
 
-- Exporteer deze functie als default uit het bestand;
+- Exporteer deze functie als default uit het bestand
 
    ```import kelvinToCelcius from './helpers/kelvinToCelcius';```
