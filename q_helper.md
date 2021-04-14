@@ -10,14 +10,12 @@ Bijvoorbeeld in een weather app krijg je de weersverwachting terug. Deze kan in 
 - Maak in die map een bestandje genaamd kelvinToCelcius.js
 - Maak daarin een functie waaraan je een getal in kelvin mee kunt geven en de temperatuur (afgerond) in Celcius teruggeeft. Dus een input van 276.35 geeft 3° C. De formule hiervoor is: Celcius = kelvin - 273.15.
 
-
-    function kelvinToCelcius(kelvin) {
+    ```function kelvinToCelcius(kelvin) {
     return `${Math.round(kelvin - 273.15)}° C`;
     }
     
-    export default kelvinToCelcius;
+    export default kelvinToCelcius;```
 
 - Exporteer deze functie als default uit het bestand;
 
-
-    import kelvinToCelcius from './helpers/kelvinToCelcius';
+   ```import kelvinToCelcius from './helpers/kelvinToCelcius';```
