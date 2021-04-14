@@ -30,7 +30,7 @@ Let op: je kunt geen `-` meer neerzetten in je `className` omdat het een JavaScr
 Let op: Wanneer je een type selector gebruik in je CSS, bijvoorbeeld een `button` of `h1` dan wordt dit globaal voor alles toegepast.
 
 ### Voorbeeld
-components > button > Button.js
+Map components > button > Button.js
 
     import React from 'react';
     import styles from './Button.module.css';
@@ -49,7 +49,7 @@ components > button > Button.js
     
     export default Button;
  
-components > button > Button.module.css
+Map components > button > Button.module.css
 
     .default {
         padding: 16px;
@@ -89,7 +89,7 @@ Wat moet je niet doen met BEM:
 - nest zo min mogelijk elementen in elkaar
 
 ### Voorbeeld
-components > button > Button.js
+Map components > button > Button.js
 
     import React from 'react';
     import styles from './Button.module.css';
@@ -108,7 +108,7 @@ components > button > Button.js
     
     export default Button;
 
-components > button > Button.module.css
+Map components > button > Button.module.css
 
     .button {
         padding: 16px;
@@ -144,13 +144,13 @@ De dev betekend dat we het alleen maar gebruiken tijdens het developen, het is a
 5. Variabele maken in _variables.scss, bijv. een kleur die vaak gebruikt word: `$color-primary: #D6FFF6;`, `$color-secundary: #4DCCBD;` en `$color-white: #FFF;`
 6. Variabele gebruiken, die moet je eerst importeren: `@import '../scss/variables';` en vervolgens in de file zetten, bijvoorbeeld: `background-color: $color-secundary;`
 
-scss > _variables.scss
+Map scss > _variables.scss
 
     $color-primary: #d6fff6;
     $color-button: #f7f7f7;
     $color-white: #fff;
 
-components > button > Button.css
+Map components > button > Button.css
 
     @import '../../scss/variables';
     
