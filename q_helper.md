@@ -14,7 +14,7 @@ Bijvoorbeeld in een weather app krijg je de weersverwachting terug. Deze kan in 
     return `${Math.round(kelvin - 273.15)}° C`;
     }
     
-    export default kelvinToCelcius;```
+    export default kelvinToCelcius;
 
 - Exporteer deze functie als default uit het bestand;
 
