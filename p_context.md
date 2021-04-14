@@ -114,8 +114,11 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
 - Stap 10: Stukje data maken die via Provider in Context gaat
 - Stap 11: Context importeren
 - Stap 12: Componenten “abonneren” op de context met `useContext`
-- Stap 13: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
-- Stap 14: CounterContext.js state toevoegen in de provider en twee functies maken die de waarde in de state aanpassen
+- Stap 13: State aanmaken
+- Stap 14: Logica state
+- Stap 15: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
+- Stap 16: CounterContext.js state toevoegen in de provider
+- Stap 17: CounterContext.js twee functies maken die de waarde in de state aanpassen
 - Stap 18: Buttons abonneren op de context functies door `useContext` te gebruiken
 
 #### Stap 7 - map context aanmaken + CounterContext.js
@@ -443,7 +446,7 @@ Je zet een `onClick` op de buttons met de naam van de functie erin.
     
     export default IncrementButton;
 
-### Uitleg property children 
+## Uitleg property children 
 
 Een gewone button ziet er zo uit.
 
