@@ -16,7 +16,7 @@ We gebruiken overal dezelfde functie maar door middel van wat we de useEffect me
 
 ### Voorbeeld lifecycle mounting en updating
 
-#### stap 1 - App.js
+#### Stap 1 - App.js
 
     import React from 'react';
     import './App.css';
@@ -31,7 +31,7 @@ We gebruiken overal dezelfde functie maar door middel van wat we de useEffect me
     
     export default App;    
 
-#### stap 2 - App.js
+#### Stap 2 - App.js
 State aangemaakt die count bijhouden.
 
     import React, {useState} from 'react';
@@ -49,7 +49,7 @@ State aangemaakt die count bijhouden.
     
     // export default App;
 
-#### stap 3 - Buttons.js
+#### Stap 3 - Buttons.js
 Een component met buttons + en - aangemaakt.
 
     import React from 'react';
@@ -69,7 +69,7 @@ Een component met buttons + en - aangemaakt.
     
     export default Buttons;
 
-#### stap 4 - Count.js
+#### Stap 4 - Count.js
 Een component die count laat zien.
 
     import React from 'react';
