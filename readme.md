@@ -12,7 +12,7 @@ Dit project bevat de volgende bestanden:
 * `i_reacthookform.md`
 * `j_router.md`
 * `k_reactlifecycles.md`
-* `l_api.md`
+* `l_api.md` & `l_apiVoorbeeld.md`  
 * `m_error.md`
 * `n_loading.md`
 * `o_exports.md`  
