@@ -2,7 +2,7 @@
 
 Met componenten kunnen we een groot bestand of een complexe webstructuur in kleinere componenten opsplitsen. Bijkomend voordeel is dat we de componenten kunnen hergebruiken wanneer ze dezelfde functionaliteit hebben. 
 
-We gaan de volgende website in kleinere componenten splitsen.
+We gaan de volgende website `index.js` in kleinere componenten splitsen.
 
     import React from "react";
     import ReactDOM from "react-dom";
@@ -19,13 +19,13 @@ We gaan de volgende website in kleinere componenten splitsen.
       document.getElementById("root")
     );
 
-Als eerste gaan we een Heading component maken, dit doe je door middel van een functie. De naam van de functie is in React altijd met een hoofdletter. De Heading functie geeft een HTML element terug met behulp van Javascript.
+Als eerste gaan we een `Heading` component maken, dit doe je door middel van een functie. De naam van de functie is in React altijd met een hoofdletter. De `Heading` functie geeft een HTML element terug met behulp van Javascript.
 
     function Heading() {
       return <h1>My Favourite Foods</h1>;
     }
 
-Nu kun je deze aangepaste Heading component in de React-code gebruiken alsof het een HTML-element is: <Heading />
+Nu kun je deze aangepaste `Heading` component in de React-code gebruiken alsof het een HTML-element is: `<Heading />`
 
     ReactDOM.render(
       <div>
@@ -39,13 +39,13 @@ Nu kun je deze aangepaste Heading component in de React-code gebruiken alsof het
       document.getElementById("root")
     );
 
-Heading staat nog binnen hetzelfde bestand index.js en dat maakt het niet overzichtelijk. We gaan een ES6 functie gebruiken waarbij we onze Heading component importeren vanuit een apart bestand.
+`Heading` staat nog binnen hetzelfde bestand `index.js` en dat maakt het niet overzichtelijk. We gaan een ES6 functie gebruiken waarbij we onze `Heading` component importeren vanuit een apart bestand.
 
-We maken een nieuw bestand aan in de src folder genaamd Heading.jsx, dit wordt een custom component. We kopiëren de functie in dit bestand. 
+We maken een nieuw bestand aan in de `src folder` genaamd `Heading.js`. Dit wordt een custom <b>component</b>. We kopiëren de functie in dit bestand. 
 
-Bestanden index.js en Heading.jsx moeten met elkaar gelinkt worden. Voor index.js is dit import en voor Heading.jsx export.
+Bestanden `index.js` en `Heading.js` moeten met elkaar gelinkt worden. Voor `index.js` is dit import en voor `Heading.js` export.
  
-Heading.jsx
+<i>Heading.js</i>
     
     import React from "react";
     
@@ -55,7 +55,7 @@ Heading.jsx
     
     export default Heading;
 
-index.js
+<i>index.js</i>
 
     import React from "react";
     import ReactDOM from "react-dom";
@@ -73,9 +73,25 @@ index.js
       document.getElementById("root")
     );
 
-We maken ook een custom component voor de lijst.
+We maken ook een custom <b>component</b> voor de lijst.
 
-index.js
+<i>List.js</i>
+
+    import React from "react";
+    
+    function List() {
+      return (
+        <ul>
+          <li>Bacon</li>
+          <li>Jamon</li>
+          <li>Noodles</li>
+        </ul>
+      );
+    }
+    
+    export default List;
+
+<i>index.js</i>
 
     import React from "react";
     import ReactDOM from "react-dom";
@@ -90,38 +106,34 @@ index.js
       document.getElementById("root")
     );
 
-List.jsx
+
+Wat je normaal ziet in het bestand `index.js` van veel React apps is dat ze geen HTML elementen zoals een div of een h1 hebben. In plaats daarvan zie je een aangepaste component met de naam `<App/>`. 
+
+Wat je nu in de `index.js` ziet staan, wil je in het bestand genaamd `App.js` hebben. 
+
+<i>index.js</i>
+
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App';
+    import reportWebVitals from './reportWebVitals';
+    
+    ReactDOM.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+    
+    reportWebVitals();
+
+<i>App.js</i>
 
     import React from "react";
-    
-    function List() {
-      return (
-        <ul>
-          <li>Bacon</li>
-          <li>Jamon</li>
-          <li>Noodles</li>
-        </ul>
-      );
-    }
-    
-    export default List;
-
-Wat je normaal ziet in het bestand index.js van veel React apps is dat ze geen HTML elementen zoals een div of een h1 hebben. In plaats daarvan zie je een aangepaste component met de naam App. 
-Wat je nu in de index.js ziet staan, wil je in het bestand genaamd App.jsx hebben. Daarnaast worden de bestanden opgeslagen in een directory map genaamd components.
-
-index.js
-
-    import React from "react";
-    import ReactDOM from "react-dom";
-    import App from "./components/App";
-    
-    ReactDOM.render(<App />, document.getElementById("root"));
-
-Directory map “components”: App.jsx
-
-    import React from "react";
-    import Heading from "./Heading";
-    import List from "./List";
+    import './App.css';
+    import Heading from "././components/Heading"
+    import List from "././components/List"
     
     function App() {
       return (
@@ -135,7 +147,7 @@ Directory map “components”: App.jsx
     
     export default App;
 
-Directory map “components”: Heading.jsx
+<i>Directory map “components”: Heading.js</i>
 
     import React from "react";
     
@@ -145,7 +157,7 @@ Directory map “components”: Heading.jsx
     
     export default Heading;
 
-Directory map “components”: List.jsx
+<i>Directory map “components”: List.js</i>
 
     import React from "react";
     
@@ -160,3 +172,7 @@ Directory map “components”: List.jsx
     }
     
     export default List;
+
+### Mappenstructuur in React
+
+![img.png](assets/img.png)
