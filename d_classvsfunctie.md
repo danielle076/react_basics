@@ -1,7 +1,7 @@
 ## Class component vs Function component
 
-### Voorbeeld #1 - state initialiseren
-Class component
+### State initialiseren
+<i>Class component</i>
 
     constructor()
     {
@@ -10,12 +10,12 @@ Class component
          };
     }
 
-Function component
+<i>Function component</i>
 
     [counter, setCounter] = useState(0);
 
-### Voorbeeld #2 - state aanspreken
-Class component
+### State aanspreken
+<i>Class component</i>
 
     return (
         <p>
@@ -23,7 +23,7 @@ Class component
         </p>
     );
 
-Function component
+<i>Function component</i>
 
     return (
         <p>
@@ -31,17 +31,17 @@ Function component
         </p>
     );
 
-### Voorbeeld #3 - state wijzigen
-Class component
+### State wijzigen
+<i>Class component</i>
 
     () => this.setState({
         counter: 1,
     });
 
-Function component
+<i>Function component</i>
 
     () => setSounter(1);
 
 ### Wanneer weet je dat je met een class component te maken heb
-- this, want dit keyword kan niet gebruik worden in een function component
+- door het woordje this: dit keyword kan niet gebruikt worden in een function component
 - render
