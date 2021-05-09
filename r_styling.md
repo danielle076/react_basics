@@ -25,7 +25,7 @@ Om te voorkomen dat alles wordt samengevoegd kun je een module gebruiken:
 - in onze import zet je niet `import './Button.css';` maar `import styles from '.Button.module.css'`
 - bij het gebruik van een className "error" geef je het object mee: `className={styles.error}`
 
-Let op: je kunt geen `-` meer neerzetten in je `className` omdat het een JavaScript object is geworden: `{styles.error}`. Stel je CSS class heet `.default-button` en je maakt er een CSS modules van dan kun je niet zeggen: `className={styles.default-button}`. Zodra er een teken in de key staat dan gebruik je blokhaken en maak je er een String van: `className={styles.["default-button"]}`.
+Let op: je kunt geen `-` meer neerzetten in je `className` omdat het een JavaScript object is geworden: `{styles.error}`. Stel je CSS class heet `.default-button` en je maakt er een CSS modules van dan kun je niet zeggen: `className={styles.default-button}`. Zodra er een teken in de key staat dan gebruik je blokhaken en maak je er een String van: `className={styles["default-button"]}`.
 
 Let op: Wanneer je een type selector gebruik in je CSS, bijvoorbeeld een `button` of `h1` dan wordt dit globaal voor alles toegepast.
 
