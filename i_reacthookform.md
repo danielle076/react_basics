@@ -33,24 +33,34 @@ We maken een functie die wordt aangeroepen op het moment dat we het formulier wi
 
 De `onSubmit()` is een eventHandler, dus als we daar direct een `console.log` in hadden gezet hadden we de anonieme functie moeten gebruiken. Maar we hebben een externe functie "onSubmitButton" gemaakt dus kunnen we die gebruiken.
 
-    return (
-        <>
-          <h1>Weer bestellen</h1>
-          <form onSubmit={onSubmitButton}>
-            <button type="submit">
-              Verzenden
-            </button>
-          </form>
-         </>
-    );
+    import React from 'react'
+    import './App.css';
+    
+    function App() {
+    
+        function onSubmitButton() {
+            console.log("Jij wilt versturen")
+        }
+    
+        return (
+            <>
+                <h1>Weer bestellen</h1>
+                <form onSubmit={onSubmitButton}>
+                    <button type="submit">
+                        Verzenden
+                    </button>
+                </form>
+            </>
+        );
+    }
+    
+    export default App;
 
 Wanneer je de `console.log` bekijkt zie je dat het bericht erin staat, maar ook weer gelijk verdwijnt. Hij ververst de pagina en dat komt doordat we bij `type` submit hebben staan. Om ervoor te zorgen dat dit niet gebeurd kun je aan de functie "onSubmitButton" een event object (e of event) meegeven. Op dat event object staat een functie en die noemen we `preventDefault()`. Met deze functie gaan we de default behavior van het formulier preventen zodat de pagina niet ververst.
 
-    function App() {
-        function onSubmitButton(e) {
-          e.preventDefault();
-          console.log("Jij wilt versturen")
-        }
+    function onSubmitButton(e) {
+        e.preventDefault();
+        console.log("Jij wilt versturen")
     }
  
 We geven het formulier een input met naam en woonplaats. De volgende acties geef je mee.
@@ -198,7 +208,7 @@ Ons basis formulier ziet er als volgt uit.
     export default App;
 
 ### Hook form formulier
-Installeer React hook form: npm install react-hook-form
+Installeer React hook form: `npm install react-hook-form`
 
 Implementeer React hook form.
 
@@ -212,9 +222,9 @@ We gaan React hook form initialiseren.
 
 Op de website van React hook form staat wat je kunt doen met deze library: https://react-hook-form.com/.
 
-Je kunt bijvoorbeeld de volgende dingen doen: const { register, handleSubmit, watch, errors } = useForm();
-- "handleSubmit" zal de invoer valideren voordat "onSubmit" wordt aangeroepen
-- registreer je invoer in de hook door de "register" functie aan te roepen
+Je kunt bijvoorbeeld de volgende dingen doen: const `{ register, handleSubmit, watch, errors } = useForm();`
+- `handleSubmit` zal de invoer valideren voordat "onSubmit" wordt aangeroepen
+- registreer je invoer in de hook door de `register` functie aan te roepen
 
 `e.preventDefault();` hoeven we niet meer te doen, want dat doet React hook form voor ons.
 
@@ -228,66 +238,66 @@ Je kunt bijvoorbeeld de volgende dingen doen: const { register, handleSubmit, wa
         return (
             <form onSubmit={handleSubmit(onSubmitButton)}>
             </form>
-        )
+        );
     }
 
-Je kunt velden registeren door op de invoervelden `ref={register}` te zetten.
+Je kunt velden registreren door op de invoervelden `{...register('value')}` te zetten.
 
     return (
         <>
-          <h1>Weer bestellen</h1>
-          <form onSubmit={handleSubmit(onSubmitButton)}>
-            <input
-              ref={register}
-              type="text"
-              name="fullName"
-              placeholder="Naam en achternaam"
-              id="name"
-            />
-            <input
-              ref={register}
-              type="text"
-              name="plaatsnaam"
-              placeholder="Plaatsnaam"
-              id="plaatsnaam"
-            />
-            <p>Ik wil graag:</p>
-            <label htmlFor="field-rain">
-              <input
-                ref={register}
-                type="radio"
-                name="weather"
-                value="rain"
-                id="field-rain"
-              />
-              Regen
-            </label>
-            <label htmlFor="field-wind">
-              <input
-                ref={register}
-                type="radio"
-                name="weather"
-                value="wind"
-                id="field-wind"
-              />
-              Lekker veel wind
-            </label>
-            <label htmlFor="field-sun">
-              <input
-                ref={register}
-                type="radio"
-                name="weather"
-                value="sun"
-                id="field-sun"
-              />
-              Zonnig
-            </label>
-            <button type="submit">
-              Verzenden
-            </button>
-          </form>
+            <h1>Weer bestellen</h1>
+            <form onSubmit={handleSubmit(onSubmitButton)}>
+                <input
+                    {...register("fullName")}
+                    type="text"
+                    name="fullName"
+                    placeholder="Naam en achternaam"
+                    id="name"
+                />
+                <input
+                    {...register("plaatsnaam")}
+                    type="text"
+                    name="plaatsnaam"
+                    placeholder="Plaatsnaam"
+                    id="plaatsnaam"
+                />
+                <p>Ik wil graag:</p>
+                <label htmlFor="field-rain">
+                    <input
+                        {...register("field-rain")}
+                        type="radio"
+                        name="weather"
+                        value="rain"
+                        id="field-rain"
+                    />
+                    Regen
+                </label>
+                <label htmlFor="field-wind">
+                    <input
+                        {...register("field-wind")}
+                        type="radio"
+                        name="weather"
+                        value="wind"
+                        id="field-wind"
+                    />
+                    Lekker veel wind
+                </label>
+                <label htmlFor="field-sun">
+                    <input
+                        {...register("field-sun")}
+                        type="radio"
+                        name="weather"
+                        value="sun"
+                        id="field-sun"
+                    />
+                    Zonnig
+                </label>
+                <button type="submit">
+                    Verzenden
+                </button>
+            </form>
         </>
-    )
+    );
 
 Wanneer we op de submit knop drukken krijgen we het data object mee in de `console.log`.
 
@@ -295,7 +305,9 @@ Wanneer we op de submit knop drukken krijgen we het data object mee in de `conso
         console.log(data)
     }
 
-We gaan validatie toevoegen. Lijst van ondersteunde validatieregels:
+> <span style="color:red">Let op: radio log hij niet in de console, aan het uitzoeken!</span>.
+
+We gaan validatie toevoegen. De ondersteunde validatieregels zijn:
 - required (velden zijn verplicht)
 - min (minimale hoogte cijfers)
 - max (maximale hoogte cijfers)
@@ -307,7 +319,7 @@ We gaan validatie toevoegen. Lijst van ondersteunde validatieregels:
 Bij register vul je in wat je voor validatie voor dat veld wilt hebben. Het is een object, dus je kunt meerdere dingen toevoegen.
 
     <input
-        ref={register({required: true, maxLength: 10})}
+        {...register("fullName", {required: true, maxLength: 10})}
         type="text"
         name="fullName"
         placeholder="Naam en achternaam"
@@ -316,28 +328,33 @@ Bij register vul je in wat je voor validatie voor dat veld wilt hebben. Het is e
 
 Als er niet voldaan wordt aan de validaties dan wordt de naam van het veld in het errors object gezet.
 
-    const {register, handleSubmit, errors} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     
     return (
        <>
          <h1>Weer bestellen</h1>
          <form onSubmit={handleSubmit(onSubmitButton)}>
            <input
-             ref={register({maxLength: 2})}
-             type="text"
-             name="fullName"
-             placeholder="Naam en achternaam"
-             id="name"
-           />
-           {errors.fullName && "Name is too long"}
-           <input
-             ref={register({required: true})}
-             type="text"
-             name="plaatsnaam"
-             placeholder="Plaatsnaam"
-             id="plaatsnaam"
-           />
-           {errors.plaatsnaam && "Enter a place"}
+                    {...register("fullName", {required: true, maxLength: 10})}
+                    type="text"
+                    name="fullName"
+                    placeholder="Naam en achternaam"
+                    id="name"
+                />
+                {errors.fullName && (
+                    <span role="alert">
+                        This field is too long
+                    </span>
+                )}
+            <input
+                    {...register("plaatsnaam")}
+                    type="text"
+                    name="plaatsnaam"
+                    placeholder="Plaatsnaam"
+                    id="plaatsnaam"
+                />
          </form>
        </>
     )
+
+Wanneer je een naam dat langer is dan 10 karakters invult krijg je de melding "This field is too long". De gebruiker moet de naam aanpassen en dan pas kan hij het formulier opsturen.
