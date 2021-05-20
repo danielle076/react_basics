@@ -264,7 +264,7 @@ Je kunt velden registreren door op de invoervelden `{...register('value')}` te z
                 <p>Ik wil graag:</p>
                 <label htmlFor="field-rain">
                     <input
-                        {...register("field-rain")}
+                        {...register("weather")}
                         type="radio"
                         name="weather"
                         value="rain"
@@ -274,7 +274,7 @@ Je kunt velden registreren door op de invoervelden `{...register('value')}` te z
                 </label>
                 <label htmlFor="field-wind">
                     <input
-                        {...register("field-wind")}
+                        {...register("weather")}
                         type="radio"
                         name="weather"
                         value="wind"
@@ -284,7 +284,7 @@ Je kunt velden registreren door op de invoervelden `{...register('value')}` te z
                 </label>
                 <label htmlFor="field-sun">
                     <input
-                        {...register("field-sun")}
+                        {...register("weather")}
                         type="radio"
                         name="weather"
                         value="sun"
@@ -304,8 +304,6 @@ Wanneer we op de submit knop drukken krijgen we het data object mee in de `conso
     function onSubmitButton(data) {
         console.log(data)
     }
-
-> <span style="color:red">Let op: radio log hij niet in de console, aan het uitzoeken!</span>.
 
 We gaan validatie toevoegen. De ondersteunde validatieregels zijn:
 - required (velden zijn verplicht)
