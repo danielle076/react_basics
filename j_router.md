@@ -4,8 +4,6 @@ Componenten vormen het hart van React's krachtige, declaratieve programmeermodel
 
 ### Installeren
 `npm install react-router-dom` <br/>
-of<br/>
-`npm install react-router-dom --save` (je slaat de geïnstalleerde package op in de dependency sectie in het package. json bestand)
 
 ### Navigatie
 We beginnen met een simpele navigatie + inhoud pagina.
@@ -32,10 +30,9 @@ We beginnen met een simpele navigatie + inhoud pagina.
             </>
         );
     }
-    
 
 ### Routing importeren
-Wanneer je routing wilt gaan gebruiken moet je hem importeren.
+Wanneer je routing wilt gebruiken moet je hem importeren.
 
     import {
         BrowserRouter as Router,
@@ -71,7 +68,7 @@ Router is het buitenste element, die moet eromheen worden gewrapped.
         );
     }
 
-Dit voorbeeld is niet juist. Het is nu niet mogelijk om in de App.js dingen te gebruiken zoals bijvoorbeeld `useHistory`, omdat de dingen van React Router beschikbaar zijn BINNEN het Router component. Het beste is dus om de `<Router>` op een hoger niveau te zetten, namelijk in index.js.
+Bovenstaand voorbeeld is niet juist. Het is nu namelijk niet mogelijk om in de App.js dingen te gebruiken zoals bijvoorbeeld `useHistory`, omdat de dingen van React Router beschikbaar zijn BINNEN het Router component. Het beste is dus om de `<Router>` op een hoger niveau te zetten, namelijk in index.js.
 
     ReactDOM.render(
         <React.StrictMode>
@@ -83,7 +80,7 @@ Dit voorbeeld is niet juist. Het is nu niet mogelijk om in de App.js dingen te g
     )
 
 ### Switch en route
-Je zet de `<Switch>` en `<Route>` om de section heen en niet de navigatie want de navigatie blijft altijd staan.
+Je zet de `<Switch>` en `<Route>` om de section heen en niet om de navigatie want de navigatie blijft altijd staan.
 
     function App() {
         return (
@@ -157,7 +154,7 @@ Een `<Route>` component geeft je altijd een path mee. De home pagina ziet er als
 
 Wanneer je in de browser de pagina bekijkt en de URL aanpast naar /food, dan zou je naar de pagina van food moeten gaan. React router werkt volgens een principe dat partial matching heet. De routes worden van boven naar beneden gelezen, en als de URL voor een gedeelte overeenkomt met één van de paden, stopt React Router met zoeken en geeft altijd de eerste match terug. Dus de pagina die hij laat zien is de home pagina, want het eerste wat hij tegenkomt is "/".
 
-Om dit te fixen kun je een exact-attribuut toevoegen aan de routes die gedeeltelijk overeenkomen met andere routes, zoals bij de home pagina en de food pagina (exact zet je bij de kortste link).
+Om dit te fixen kun je een `exact-attribuut` toevoegen aan de routes die gedeeltelijk overeenkomen met andere routes, zoals bij de home pagina en de food pagina (exact zet je bij de kortste link).
 
     <Switch>
         <Route exact path="/">
@@ -187,7 +184,7 @@ Om dit te fixen kun je een exact-attribuut toevoegen aan de routes die gedeeltel
     </Switch>
 
 ### Navlink
-Navigatie toevoegen doe je met `<NavLink>`. Je kan alleen verwijzen naar URL's die je in je Switch/Route heb gedefinieerd. Met `activeClassName="active-link"` kun je in je CSS stylen.
+Navigatie toevoegen doe je met `<NavLink>`. Je kan alleen verwijzen naar URL's die je in je Switch/Route heb gedefinieerd. Met `activeClassName="active-link"` kun je CSS stylen dat de pagina waar je op zit gehighlight word.
 
     <nav>
         <ul>
@@ -200,10 +197,10 @@ Navigatie toevoegen doe je met `<NavLink>`. Je kan alleen verwijzen naar URL's d
         </ul>
     </nav>
 
-CSS toevoegen, wanneer een link actief is wordt hij de kleur `coral`.
+CSS: wanneer een link actief is wordt hij de kleur `pink`.
 
     .active-link{
-        background-color: coral;
+        background-color: pink;
         color: white;
     }
 
@@ -244,9 +241,9 @@ In de App.js gebruik je het component als volgt.
     </Route>
 
 ### Dynamische parameters
-Dynamische parameters doe je met `useParams`. Bijvoorbeeld je hebt een blog en daar heb je een template-pagina van hoe een blogpost eruit moet komen te zien. Je hoeft niet voor elke blogpost een nieuwe pagina-component te maken. 
+Dynamische parameters doe je met `useParams`. Je hebt bijvoorbeeld een blog en daar heb je een template-pagina van hoe een blogpost eruit moet komen te zien. Je hoeft niet voor elke blogpost een nieuwe pagina-component te maken. 
 
-`useParams` zorgt ervoor dat we de dynamische parameter uit de URL kunnen halen. De `useParams` zet je in de `<Route>` door een `/: + een naam`. Op basis van die naam haal je de gegevens eruit die je nodig heb. Zo maak je een dynamische URL.
+`useParams` zorgt ervoor dat we de dynamische parameter uit de URL kunnen halen. De `useParams` zet je in de `<Route>` door een `/:` + `naam`. Op basis van die naam haal je de gegevens eruit die je nodig heb. Zo maak je een dynamische URL.
 
     <Route exact path="/food/:id">
         <Food/>
@@ -269,8 +266,9 @@ Vervolgens gebruik je in Food.js de useParams `id`.
     }
 
 ### Doorlinken
-Wanneer je iemand wilt doorlinken naar een andere pagina met niet een link op de pagina, maar met het klikken op een button doe je dit met `useHistory()`.
-Naast deze button wil je ook dat er andere dingen gebeuren zoals dat er iets in de console wordt gelogd.
+Wanneer je iemand wilt doorlinken naar een andere pagina met niet een link, maar met het klikken op een button dan doe je dit met `useHistory()`.
+
+In dit voorbeeld wil je naast het klikken op de button ook dat er andere dingen gebeuren zoals dat er iets in de console wordt gelogd.
 
 In de functie `handleClick` heb je geen toegang meer tot het link-component. Met gebruik van de `push` van `useHistory()` kun je pushen naar de link waar je naartoe wilt gaan.
 
@@ -299,7 +297,7 @@ In de functie `handleClick` heb je geen toegang meer tot het link-component. Met
 ### Privateroute
 Privateroute gebruik je om content af te schermen van specifieke gebruikers. Bijvoorbeeld je moet admin rechten hebben om ergens bij te kunnen of je moet ingelogd zijn om content te kunnen bekijken.
 
-We doen met state alsof de gebruiker is ingelogd = true en niet ingelogd = false. <br/>
+We doen met `state` alsof de gebruiker is ingelogd = true en niet ingelogd = false. <br/>
 Met conditioneel renderen bepalen we of iemand de pagina mag zien wanneer de state true is.
 
     function App() {
