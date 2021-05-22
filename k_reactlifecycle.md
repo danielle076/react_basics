@@ -6,13 +6,13 @@
 
 Dit is belangrijk om te weten, omdat je dingen op een bepaald moment wilt uitvoeren.
 
-Voor elke lifecycle is er eigenlijk een aparte functie. Voorheen hadden we Class en deze components zaten wat moeilijker in elkaar, met hooks is alles versimpelt.
+Zoals je ziet was er voor elke lifecycle een aparte functie, maar met hooks is dit versimpelt.
 - Initialisation: `useState()`
 - Mounting: `useEffect()`
 - Updating: `useEffect()`
 - Unmounting: `useEffect()`
 
-We gebruiken overal dezelfde functie maar door middel van wat we de useEffect meegeven geven we aan in welke lifecycle hij zit.
+We gebruiken overal dezelfde functie maar door middel van wat we de `useEffect` meegeven, geven we aan in welke lifecycle hij zit.
 
 ### Voorbeeld lifecycle mounting en updating
 
@@ -47,10 +47,10 @@ State aangemaakt die count bijhouden.
         );
     }
     
-    // export default App;
+    export default App;
 
 #### Stap 3 - Buttons.js
-Een component met buttons + en - aangemaakt.
+Een components map met daarin Buttons.js aangemaakt.
 
     import React from 'react';
     
@@ -70,7 +70,7 @@ Een component met buttons + en - aangemaakt.
     export default Buttons;
 
 #### Stap 4 - Count.js
-Een component die count laat zien.
+In de components map Count.js aangemaakt. Deze component laat count zien.
 
     import React from 'react';
     
@@ -101,7 +101,7 @@ Importeren van Buttons.js en Count.js + components gebruiken in return.
         );
     }
     
-    // export default App;
+    export default App;
 
 #### Stap 6 - App.js
 We willen dat het aantal kliks in Count.js wordt weergegeven met `count` en dat Button.js `count` en `setCount` meekrijgt, zodat we die kunnen aanpassen.
@@ -122,7 +122,7 @@ We willen dat het aantal kliks in Count.js wordt weergegeven met `count` en dat 
         );
     }
     
-    // export default App;
+    export default App;
 
 #### Stap 7 - Count.js
 Je ontvangt de count in de props en die geef je weer in de return. <br/>
@@ -178,6 +178,8 @@ Stel je zou data aanroepen en je wilt dit hebben wanneer het Component geladen i
         );
     }
 
+    export default Buttons;
+
 &
     
     import React from 'react';
@@ -219,10 +221,12 @@ Wanneer je nu op de +/- knoppen drukt zal "binnen useEffect" maar 1 keer worden 
             </>
         );
     }
-    
-    import React, {useEffect} from 'react';
+
+    export default Buttons;
 
 &
+
+    import React, {useEffect} from 'react';
 
     function Count( {count}){
         console.log("COUNT: Ik ben buiten de useEffect aangeroepen")
