@@ -1,5 +1,5 @@
 ## Gebruikersfeedback: error
-We moeten ervoor zorgen dat we in iedere situatie feedback geven over wat er gebeurt, of wat er dus juist niét gebeurt.
+We moeten ervoor zorgen dat we in iedere situatie feedback geven over wat er gebeurt, of wat er juist niét gebeurt.
 
 Wanneer er door de gebruiker iets gedaan wordt dat niet juist is zal de API een errorcode teruggeven, dit wordt opgevangen in het catch-blok.
 
@@ -17,7 +17,7 @@ We zien dat wanneer er iets fout gaat dit alleen in de console wordt weergegeven
 
 We maken een state aan met `useState()` en noemen de variabele `error`.
 
-In het geval dat we in het catch blok terecht komen `catch (error)`, roepen we de setError aan. Je kan zeggen `setError("error.message")` maar dit is vaak te cryptisch, dus je kan ook zeggen: `setError("Er is iets misgegaan bij het ophalen van de data.")`
+In het geval dat we in het catch blok `catch (error)` terecht komen, roepen we de `setError` aan. Je zou kunnen zeggen `setError("error.message")` maar dit is te cryptisch, dus kun je ook zeggen: `setError("Er is iets misgegaan bij het ophalen van de data.")`.
 
     function App() {
     const [countries, setCountries] = useState([]);
@@ -34,7 +34,7 @@ In het geval dat we in het catch blok terecht komen `catch (error)`, roepen we d
             }
         }      
 
-Wanneer je een error bericht heb gekregen en de website werkt toch, dan blijft het error bericht staan, omdat de error achter de schermen nog op true staat. Om ervoor te zorgen dat we met het opnieuw aanvragen van de fetchData of useEffect beginnen met een schone lei, zetten we de setError terug op 0: `setError("");`.
+Wanneer je een error bericht heb gekregen en de website is toch gaan werken, dan blijft het error bericht staan, omdat de error achter de schermen nog op true staat. Om ervoor te zorgen dat we met het opnieuw aanvragen van de fetchData of useEffect beginnen met een schone lei, zetten we de setError terug op 0: `setError("");`.
 
     function App() {
     const [countries, setCountries] = useState([]);
@@ -53,7 +53,7 @@ Wanneer je een error bericht heb gekregen en de website werkt toch, dan blijft h
         }   
 
 
-De error message zetten we in return: als we een error hebben `{error && ` dan willen we die laten zien `{error && <p>{error}</p>}`.
+De error message zetten we in return: als we een error hebben: `{error && `, dan willen we die laten zien: `{error && <p>{error}</p>}`.
 
     return (
         <ul>
