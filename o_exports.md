@@ -3,11 +3,7 @@ Exports doen we met volledige componenten en pagina's.
 
 ### Default export
 
-Aan het einde van je Component HomePage zie je `export default HomePage;` staan en deze kun je gebruiken in je App.js met import.
-
-Het maakt niet uit hoe je de import noemt, met die naam kun je in App.js de import gebruiken.
-
-Default exports importeren we altijd zonder snorretjes `{}`.
+Aan het einde van HomePage.js zie je `export default HomePage;` staan en deze kun je importeren in App.js.
 
 <i>HomePage.js</i>
 
@@ -17,12 +13,17 @@ Default exports importeren we altijd zonder snorretjes `{}`.
 
     export default HomePage;
 
+Default exports importeren we altijd zonder snorretjes `{}`.
+
 <i>App.js</i>
 
     import HomePage from './HomePage.js'
+
+Of
     
     import Bananen from './HomePage.js'
 
+Het maakt niet uit hoe je de import noemt, bijvoorbeeld Bananen.
 
 ### Named export
 
@@ -30,7 +31,7 @@ Het verschil met default export is dat je alleen het woord export ziet staan, zo
 
 Wanneer je alleen `export` ziet staan, dan moet je het met snorretjes `{}` importeren.
 
-Je mag het geen andere naam geven zoals bijvoorbeeld 'Bananen', maar je kan het wel hernoemen.
+Je mag het geen andere naam geven zoals bijvoorbeeld Bananen, maar je kunt het wel hernoemen.
 
 <i>HomePage.js</i>
 
@@ -45,7 +46,6 @@ Je mag het geen andere naam geven zoals bijvoorbeeld 'Bananen', maar je kan het 
     import {Bananen} from './HomePage.js' // dit werkt niet
     
     import {HomePage as Bananen} from './HomePage.js' // hernoemen kan wel
-
 
 ### Named & default export 
 
