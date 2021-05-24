@@ -1,16 +1,22 @@
 ## API voorbeeld Pokémon
 Ga naar de pokemon API: https://pokeapi.co/.
 
-Wanneer je in "try it now" `pokemon` zet, dus https://pokeapi.co/api/v2/pokemon, zie je dat daar een array [] in zit met 20 items (objecten {}) die alleen de naam en de url van een specifieke pokemon bevatten.
+Wanneer je in "Try it now!" `pokemon` zet, dus https://pokeapi.co/api/v2/pokemon, zie je dat daar een array [] in zit met 20 items (objecten {}) die alleen de naam en de url van een specifieke pokemon bevatten.
 
-Wat we ook zien is een property 'previous', die is nu null want je hebt de eerste 20 pokemons opgevraagd.
+![img.png](assets/img4.png)
 
-We hebben ook een next link en deze next link bevat dezelfde endpoint maar met een beetje extra informatie: https://pokeapi.co/api/v2/pokemon?offset=20&limit=20. Wanneer we nu in "try it now" `pokemon?offset=20&limit=20` zetten dan wordt de next knop: https://pokeapi.co/api/v2/pokemon?offset=40&limit=20. Hij gaat dus naar de volgende 20 pokemon.
+![img.png](assets/img5.png)
+
+Wat we ook zien is een property "previous", die is nu null want je hebt de eerste 20 pokemon opgevraagd.
+
+We hebben ook een next link en deze next link bevat dezelfde endpoint maar met een beetje extra informatie: https://pokeapi.co/api/v2/pokemon?offset=20&limit=20. Wanneer we nu in "Try it now!" `pokemon?offset=20&limit=20` zetten dan wordt de next knop: https://pokeapi.co/api/v2/pokemon?offset=40&limit=20. Hij gaat dus naar de volgende 20 pokemon.
 
 Je ziet dat je nu ook een previous link heb: https://pokeapi.co/api/v2/pokemon?offset=0&limit=20.
 
+![img.png](assets/img6.png)
+
 ### Stap 1 - axios installeren
-We gaan data ophalen dus moeten we axios installeren en importeren: `npm install axios –-save` (met --save wordt hij toegevoegd aan de package.json)
+We gaan data ophalen dus moeten we axios installeren en importeren: `npm install axios`.
 
     import React from 'react';
     import axios from 'axios';
@@ -82,7 +88,7 @@ We maken een get request en geen post request want we halen data op.
     }
 
 ### Stap 5 - variabele result maken + loggen
-Hetgeen wat we nu awaiten krijgen we terug uit de get functie, maar dat vangen we nergens op. Het komt wel terug maar het hangt ergens in de lucht te hangen. Om dit op te vangen gebruiken we een variabele const.
+Hetgeen wat we awaiten krijgen we terug uit de get functie, maar dat vangen we nergens op. Het komt wel terug, maar het hangt ergens in de lucht te hangen. Om dit op te vangen gebruiken we een variabele `const`.
 
     function App() {
         useEffect(() => {
@@ -125,7 +131,7 @@ In data zit alle informatie die je wilt hebben.
 ### Stap 7 - data loggen
 Je krijgt `count`, `next`, `previous` en `results` te zien in `data`.
 
-De `next` link hebben we nodig om de volgende request te maken en previous om terug te gaan.
+De `next` link hebben we nodig om de volgende request te maken en `previous` om terug te gaan.
 
 In `results` staan alle pokemon die we kunnen laten zien.
 
@@ -174,7 +180,7 @@ Pokemon opslaan in state `pokemons`, `setPokemons`.
 
 De volgende url opslaan in state `nextUrl`, `setNextUrl`.
 
-De vorige url opslaan in state `previousUrl`, `setPreciousUrl`
+De vorige url opslaan in state `previousUrl`, `setPreciousUrl`.
 
 Gebruik de `setters` om results, next en previous te loggen.
 
@@ -271,9 +277,9 @@ Gebruik de `setters` om results, next en previous te loggen.
     );
 
 ### Stap 14 - fetchpokemon een aantal keer aanroepen
-Op het moment dat we op de vorige of volgende knop drukken, willen we dat opnieuw de pokemons worden opgehaald. Dat betekend dat we opnieuw een get request maken, maar dan met de volgende 20 pokemon.
+Op het moment dat we op de vorige of volgende knop drukken, willen we dat opnieuw de pokemon worden opgehaald. Dat betekent dat we opnieuw een get request maken, maar dan met de volgende 20 pokemon.
 
-Het zou handig zijn wanneer we dit kunnen hergebruiken, dus ipv dat de async funtie in de useEffect staat (behalve de aanroep functie, die blijft staan) zetten we hem er buiten.
+Het zou handig zijn wanneer we dit kunnen hergebruiken, dus i.p.v. dat de async functie in de `useEffect` staat (behalve de aanroep functie, die blijft staan) zetten we hem er buiten.
 
     function App() {
         const [pokemons, setPokemons] = useState([]);
@@ -298,7 +304,7 @@ Het zou handig zijn wanneer we dit kunnen hergebruiken, dus ipv dat de async fun
 
 ### Stap 15 - onClick functie
 
-Nu wordt er in de useEffect functie de fetchPokemon aangeroepen voor de aller eerste keer en op het moment dat we op de knoppen volgende en vorige drukken willen we hem opnieuw gaan aanroepen. Dit doen we met een functie `onClick`.
+Nu wordt er in de `useEffect` functie de fetchPokemon aangeroepen voor de aller eerste keer en op het moment dat we op de knoppen volgende en vorige drukken willen we hem opnieuw gaan aanroepen. Dit doen we met een functie `onClick`.
 
 We doen dit met een anonieme functie (omdat we parameter toevoegen, anders hadden we `onClick={fetchPokemon}` kunnen doen), maar we willen meegeven welke url deze functie moet gaan gebruiken.
 
@@ -340,9 +346,9 @@ We roepen een functie aan met parameters, we geven er een argument aan mee maar 
 
 We gaan het argument ontvangen `fetchPokemon(url)`.
 
-In plaats van de hardcoded url, willen we de url die we meekrijgen uit de fetchPokemon functie `await axios.get('url')`
+In plaats van de hardcoded url, willen we de url die we meekrijgen uit de fetchPokemon functie `await axios.get('url')`.
 
-Bij de eerste useEffect moeten we een argument meegeven, en dit is de basis url `fetchPokemon('https://pokeapi.co/api/v2/pokemon');`
+Bij de eerste useEffect moeten we een argument meegeven, en dit is de basis url `fetchPokemon('https://pokeapi.co/api/v2/pokemon');`.
 
     function App() {
         const [pokemons, setPokemons] = useState([]);
