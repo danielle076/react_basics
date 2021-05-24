@@ -1,6 +1,6 @@
 ## Gebruikersfeedback: loading
 
-We moeten rekening houden met gebruikers die geen goede wifi verbinding hebben of bijvoorbeeld met hun telefoon op een 3G netwerk zitten.
+We moeten rekening houden met gebruikers die geen goede wifi verbinding hebben of met hun telefoon op bijvoorbeeld een 3G netwerk zitten.
 
 We maken een state aan met `useState()` en noemen de variabele `loading`.
 
@@ -34,9 +34,11 @@ De loading zetten we in return: als loading true is `{loading &&` dan laten we z
         </ul>
     );
 
-Als jij een snelle verbinding hebt, zul je deze melding niet eens zien, omdat loading maar een milliseconde true zal zijn. Maar gebruikers met een langzame verbinding zijn hier heel blij mee!
+Als jij een snelle verbinding hebt, zul je deze melding niet zien, omdat loading maar een milliseconde true zal zijn. Maar gebruikers met een langzame verbinding zijn hier heel blij mee!
 
-Je kunt dit testen in de console door aan te geven dat je "slow 3G" hebt.
+Je kunt dit testen bij inspecteren > network > no throttling > presets en selecteer "slow 3G".
+
+![img.png](assets/img7.png)
 
 De volledige code is als volgt.
 
