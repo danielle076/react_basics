@@ -6,18 +6,16 @@ Als je een React applicatie bouwt, zul je regelmatig data doorgeven via properti
 - Een light- en dark-mode interface hebt, waarbij alle componenten met één druk op de knop moeten wisselen van styling.
 - Een applicatie hebt waarbij ingelogde gebruikers afgeschermde content kunnen bekijken. Alle pagina's moeten dan weten of de gebruiker ingelogd en geautoriseerd is om de content te bekijken.
 
-`React Context` lost dit probleem voor ons op. Er wordt een overkoepelend stukje state aangemaakt waar ieder component in de applicatie bij zou kunnen. Als een component de informatie uit de context nodig heeft, kan het dit direct aanspreken (<i>consumer</i>), omdat een top-level component deze data in de context aanbied (<i>provider</i>).
+`React Context` lost dit probleem voor ons op. Er wordt een overkoepelend stukje state aangemaakt waar iedere component in de applicatie bij zou kunnen. Als een component de informatie uit de context nodig heeft, kan het dit direct aanspreken (<i>consumer</i>), omdat een top-level component deze data in de context aanbied (<i>provider</i>).
 
 Dus context geeft ons een manier om data door de componenten-tree door te geven, zonder dat we properties moeten doorgeven op ieder niveau.
 
 Wanneer je context op de verkeerde manier implementeert zorg je voor veel onnodige re-renders van veel componenten.
 
-### Hoe pak je context?
+### Hoe pak je context aan?
 Je maakt een aparte "context" voor elk stukje data dat gebundeld kan worden.
 
-Daarmee bedoelen we, stel we hebben een dark en een light UI thema daar maak je dan een `ThemeContext` voor.
-
-Stel je hebt ook nog taal selectie in de applicatie, dan maak je daar een aparte `LanguageContext` voor.
+Daarmee bedoelen we, stel we hebben een dark en een light UI thema daar maak je een `ThemeContext` voor. Stel je hebt ook nog een taal selectie in de applicatie, dan maak je daar een aparte `LanguageContext` voor.
 
 Waarom stop je niet alle context bijelkaar: dat komt omdat alle elementen die gebruik maken van de data uit de context opnieuw worden gerenderd op het moment dat een klein stukje data uit die context veranderd. Al die re-renders willen we voorkomen.
 
@@ -118,7 +116,7 @@ Er komen drie componenten in deze applicatie die allemaal toegang moeten hebben 
 - Stap 14: Logica state
 - Stap 15: Apart functie component voor de provider maken zodat de logica daar naartoe kan. De oude weghalen uit App.js en omwikkelen in index.js
 - Stap 16: CounterContext.js state toevoegen in de provider
-- Stap 17: CounterContext.js twee functies maken die de waarde in de state aanpassen
+- Stap 17: In CounterContext.js twee functies maken die de waarde in de state aanpassen
 - Stap 18: Buttons abonneren op de context functies door `useContext` te gebruiken
 
 #### Stap 7 - map context aanmaken + CounterContext.js
@@ -190,9 +188,9 @@ Als we dat data object willen meegeven aan de provider dan doen we dit via de pr
 
 #### Stap 12 - Result.js componenten “abonneren” op de context met useContext
 
-We gaan `CounterContext` gebruiken en daar hebben we `useContext` functie voor nodig.
+We gaan `CounterContext` gebruiken en daar hebben we de `useContext` functie voor nodig.
 
-We maken een variabele const aan en we moeten iets destructuren uit dat data object. Wat willen we uit de CounterContext halen, wat hebben we in dat dat object gezet: `count`.
+We maken een variabele const aan en we moeten iets destructureren uit dat data object. Wat willen we uit de CounterContext halen, wat hebben we in dat dat object gezet: `count`.
 
 In `return` gaan we `count` gebruiken.
 
@@ -237,11 +235,11 @@ We hebben vaak geen vaste data, maar data dat elke keer veranderd. Dit doen we m
     export default App;
 
 #### Stap 14 - App.js logica state
-Als we de logica hier willen houden in App.js, dan zorgen we dat de waarde van `count` in het dataobject wordt gezet.
+Als we de logica willen houden in App.js, dan zorgen we dat de waarde van `count` in het dataobject wordt gezet.
 
-De `setCount` functie willen we beschikbaar maken, deze zet je onder de property count. Nu kunnen we ons gaan abonneren op het setCount functie.
+Als je de `setCount` functie beschikbaar wil maken, zet je deze onder de property count. Nu kunnen we ons gaan abonneren op het setCount functie.
 
-Deze logica die we creëren wilt App.js niets mee te maken hebben. Deze logica willen we beheren in de provider.
+De logica die we creëren daar wilt App.js niets mee te maken hebben. Deze logica willen we gaan beheren in de provider.
 
     import React, {useState} from 'react';
     import Result from './components/Result';
@@ -366,11 +364,11 @@ In de CounterContextProvider doe je ook de error afhandeling en loading.
 
 De CounterContext provider houden we slim en alle andere componenten houden we dom door alle logica in de CounterContext te zetten.
 
-We maken twee functies voor decrementCount en incrementCount aan.
+We maken twee functies voor `decrementCount` en `incrementCount` aan.
 
-We geven deze functies mee aan het dat object, zodat die buttons dat straks uit de context kunnen halen.
+We geven deze functies mee aan dat object, zodat de buttons het straks uit de context kunnen halen.
 
-De gegevens staan nu in het data object en dat geven we mee aan `CounterContext.Provider`. Alle children die daarin zitten hebben daar toegang toe. Op dit moment zijn alle children `<App/>` die in index.js staat. En in dit App component zitten Result, DecrementButton en IncrementButton.
+De gegevens staan nu in het data object en dat geven we mee aan `CounterContext.Provider`. Alle children die daarin zitten hebben daar toegang toe. Op dit moment zijn alle children `<App/>` die in index.js staat. En in dit App component zitten `Result`, `DecrementButton` en `IncrementButton`.
 
     import React, {createContext, useState} from 'react';
     
@@ -408,7 +406,7 @@ Importeren van CounterContext en useContext functie.
 
 Hetgeen dat we gaan destructuren uit de CounterContext is `decrementCountFunction` en `incrementCountFunction`.
 
-Je kan de functies `decrementCountFunction` en `incrementCountFunction` nu gebruiken alsof we hem als property hebben ontvangen
+Je kan de functies `decrementCountFunction` en `incrementCountFunction`  gebruiken alsof we hem als property hebben ontvangen
 
 Je zet een `onClick` op de buttons met de naam van de functie erin.
 
@@ -454,7 +452,7 @@ Een gewone button ziet er zo uit.
         Klik mij!
     </button>
 
-Wanneer we een component van deze button maken, maar we willen nog steeds ons component op dezelfde manier om tekst (of andere elementen) heen kunnen plaatsen, gebruik je de children prop:
+Wanneer we een component van deze button maken, maar willen nog steeds ons component op dezelfde manier om tekst (of andere elementen) heen  plaatsen, gebruik je de children prop:
 
     function ButtonComponent({children}) {
         return (
@@ -464,7 +462,7 @@ Wanneer we een component van deze button maken, maar we willen nog steeds ons co
         )
     }
 
-Door die property kunnen we ons ButtonComponent nu op dezelfde manier om andere tekst heen wrappen.
+Door die property kunnen we het `ButtonComponent` op dezelfde manier om andere tekst heen wrappen.
 
     <ButtonComponent>
         Klik mij!
